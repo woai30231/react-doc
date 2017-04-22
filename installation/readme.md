@@ -37,7 +37,7 @@ react是非常灵活的，可以应用在各种类型的项目中。你可以用
 
 上面的操作不会涉及任何后台逻辑和数据库，它只是创建了一个前端项目构建流。所以你可以自己选择使用任何你想用的后台逻辑。它使用了构建工具有[Babel](https://babeljs.io/)和[Webpack](https://webpack.github.io/)，但是这些都不需要你来配置，它已经帮你默认配置好了！
 
-最后当你需要部署你的代码到实际生产环境中时，你只需要使用_npm run build_就会创建一个优化好的app到build文件夹下，你可以在[from its README](https://github.com/facebookincubator/create-react-app#create-react-app-)和[User Guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#table-of-contents)学到更多相关信息！
+最后当你需要部署你的代码到实际生产环境中时，你只需要使用*npm run build*就会创建一个优化好的app到build文件夹下，你可以在[from its README](https://github.com/facebookincubator/create-react-app#create-react-app-)和[User Guide](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#table-of-contents)学到更多相关信息！
 
 
 ## 把react添加到一个已存在的app中
@@ -82,11 +82,11 @@ Yarn和npm都是从[npm registry](https://www.npmjs.com/)下载这些第三方�
 
 我们推荐在使用react过程中使用Babel，它可以让你在你的javascript代码中使用es6和jsx语法，es6是一种更简单的现代javascript，而jsx是一种扩展于javascript的语言，它可以在react中很好地使用！
 
-[Babel setup instructions](https://babeljs.io/docs/setup/)解释了怎么在各种构建环境中配置babel，在此之前，你需要确定安装了_babel-preset-react_和_babel-preset-es2015_，同时在你的[.babelrc configuration](http://babeljs.io/docs/usage/babelrc/)文件中启用它们，那么现在你可以开始了！
+[Babel setup instructions](https://babeljs.io/docs/setup/)解释了怎么在各种构建环境中配置babel，在此之前，你需要确定安装了*babel-preset-react*和*babel-preset-es2015*，同时在你的[.babelrc configuration](http://babeljs.io/docs/usage/babelrc/)文件中启用它们，那么现在你可以开始了！
 
 ### Hello World with ES6 and JSX
 
-我们建议你使用打包工具如_webpack_或_Browserify_，这样你就能写模块化的代码，并最终能将所有文件打包到一个文件中以此来优化页面加载时间！
+我们建议你使用打包工具如*webpack*或*Browserify*，这样你就能写模块化的代码，并最终能将所有文件打包到一个文件中以此来优化页面加载时间！
 
 最简单的react例子如下：
 
