@@ -104,3 +104,41 @@ Yarn和npm都是从[npm registry](https://www.npmjs.com/)下载这些第三方�
 这段代码的作用就是在你的html文件的某个地方找到id为root的dom，并将hello,world!渲染进去，从而呈现在页面上！
 
 同理，你也可以把一个第三方UI库写的react Component渲染到一个已存在的app中！
+
+### Development and Production Versions
+
+默认情况下，React在开发过程中，包含很多有用的提示信息，这些歇息将有助于你开发，可是，它们使你的文件变得更大和更慢，所以你需要在部署代码到生产环境中去除这新信息，也就是需要一个生产版本的app！有以下这些工具帮助你实现代码从开发版本变到生产版本：
+
+#### Branch
+
+详情去看[Branch docs](http://brunch.io/docs/commands)！
+
+#### Browserify
+
+详情去看[Browserify docs](https://github.com/substack/node-browserify#usage)！
+
+#### Rollup
+
+详情去看[Rollup docs](https://github.com/rollup/rollup)！
+
+#### Webpack
+
+把*DefinePlugin*和*UglifyJsPlugin*设置项配置到你的webpack配置文件中，详情去看[this guide](https://webpack.js.org/guides/production-build/)！
+
+### Using a CDN
+
+当然了，如果你不想使用npm管理包，那么我们也在我们的cdn的dist目录下存放了*react*和*react-dom*，你可以在你的文件中这样引入它们：
+
+```html
+<script src="https://unpkg.com/react@15/dist/react.js"></script>
+<script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script>
+```
+
+当然了，上面的版本适合用在开发版本中，如果需要在生产版本中使用，需要这样引入：
+
+```html
+	<script src="https://unpkg.com/react@15/dist/react.min.js"></script>
+	<script src="https://unpkg.com/react-dom@15/dist/react-dom.min.js"></script>
+```
+
+如果你需要不同版本的react，那么只需要改动15到你需要的版本编号就可以了，如果你使用了Bower，那么可以通过bower安装react！
