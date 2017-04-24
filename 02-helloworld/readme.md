@@ -17,7 +17,7 @@
 
 在接下来的几个章节中我们将逐步介绍怎么使用react，并且我们将探索构建react app时的两个最基本的构建快：elements（元素）和components（组件）。只要你熟练地掌握了它们，那么你就会用一些可复用的块来搭建更复杂的app！
 
-A Note on JavaScript（一个关于javascript的理解、注解）
+## A Note on JavaScript（一个关于javascript的理解、注解）
 
 React是一个javascript库，所以我们假定你对javascript已经很熟悉！如果你还不确定的话，我们建议你[ refreshing your JavaScript knowledge](https://developer.mozilla.org/en-US/docs/Web/JavaScript/A_re-introduction_to_JavaScript)，这将有助于你后期的学习！
 
