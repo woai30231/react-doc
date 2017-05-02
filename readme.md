@@ -16,6 +16,8 @@
 
 * [2、Hello World](https://github.com/woai30231/react-doc/tree/master/02-helloworld)
 
+* [3、Introducing JSX](https://github.com/woai30231/react-doc/tree/master/03-introducingJSX)
+
 
 
 ## License
