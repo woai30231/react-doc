@@ -18,7 +18,7 @@
 
 * [3、Introducing JSX](https://github.com/woai30231/react-doc/tree/master/03-introducingJSX)
 
-* [4、Introducing JSX](https://github.com/woai30231/react-doc/tree/master/04-RenderingElements)
+* [4、Rendering Elements](https://github.com/woai30231/react-doc/tree/master/04-RenderingElements)
 
 
 
