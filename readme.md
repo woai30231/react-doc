@@ -20,6 +20,8 @@
 
 * [4、Rendering Elements](https://github.com/woai30231/react-doc/tree/master/04-RenderingElements)
 
+* [5、Components and Props](https://github.com/woai30231/react-doc/tree/master/05-ComponentsAndProps)
+
 
 
 ## License
