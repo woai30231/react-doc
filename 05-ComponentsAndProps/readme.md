@@ -72,9 +72,9 @@ _ 1、我们通过调用ReactDOM.render，渲染了<Welcome name="Sara"/> elemen
 
 _ 2、React将对象{name:'Sara'}作为props参数传递给Welcome组件；
 
-_ 3、组件Welcome返回<h1>Hello,Sara</h1>结果作为一个element；
+_ 3、组件Welcome返回&lt;h1&gt;Hello,Sara&lt;/h1&gt;结果作为一个element；
 
-_ 4、React有效地更新DOM，以此来跟<h1>Hello,Sara</h1>匹配。
+_ 4、React有效地更新DOM，以此来跟&lt;h1&gt;Hello,Sara&lt;/h1&gt;匹配。
 
 
 
