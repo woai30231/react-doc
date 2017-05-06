@@ -59,7 +59,7 @@ React elements 是不可变的，只要你创建过一次，那么你就不能�
  	setTimeout(tick,1000);
  };
  tick();
-<!--  setInterval(tick,1000); -->
+ //setInterval(tick,1000);
 ```
 这段代码会每隔1秒钟调用一次ReactDOM.render()，这里可以使用setInterval或setTimeout。
 
