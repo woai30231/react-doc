@@ -295,4 +295,146 @@ componentDidMount方法在组件渲染到页面上之后调用，这个时候非
 
 * 4、当调用tick方法的时候，会调用this.setState方法，这个方法会把state的date属性更新会当前时间，得益于this.setState方法，React才知道state发生了改变，那么它重新调用一次Clock组件的render方法，那么此时的date变成了当前时间，React会有效的更新页面；
 
-* 5、
+* 5、只要Clock从DOM中移除，就会触发componentWillUnmount方法钩子，那么这个就会清除定时器。
+
+## Using State Correctly（正确使用state）
+
+在使用state的时候，有三件事情你需要知道。
+
+### Do Not Modify State Directly （不要直接修改state）
+
+例如，下面的代码就不会重新调用组件render方法：
+
+```jsx
+	//Wrong
+	this.state.comment = 'Hello';
+```
+
+你不应该直接修改this.state，而应该通过this.setState方法。如：
+
+```jsx
+	//Correct
+	this.setState({comment:'Hello'});
+```
+只有一个地方你可以直接修改，那就是组件构造函数里面，在其它地方凡是涉及到需要修改state的，都应该使用this.setStata。
+
+### State Updates May Be Asynchronous（state的更新是异步的）
+
+React可能为了性能，一次更新一批state状态。
+
+因为props和state的更新是异步的，所以你不能依靠它的前一个值算出下一个值。
+
+例如，下面的代码就会失败：
+
+```jsx
+	//Wrong
+	this.setState({
+		counter:this.state.counter + this.props.increment
+	});
+```
+
+为了解决这个问题，我们可以使用另外一种格式的this.setState方法调用，我们通过传递一个回调函数而不是对象来解决。这个回调函数接受两个参数，分别是前一个state和当前组件的props，代码如下：
+
+```jsx
+	//Correct
+	this.setState((previousState,props)=>{
+		return {counter:previousSate.counter + props.increment};
+	});
+```
+
+我们上面使用了[arrow function](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Functions/Arrow_functions)，但它可以使用正常的javascript函数。如：
+
+```jsx
+	//Correct
+	this.setState(function(previousState,props){
+		return {counter:previousSate.counter + props.increment};
+	});
+```
+
+## State Updates are Merged（采用合并的方法更新state）
+
+当我们调用setState方法的时候，react会合并一个对象到当前的state里面。
+
+例如，你的state可能包含几个独立的值：
+
+```jsx
+	constructor(props){
+		super(props);
+		this.state = {
+			posts : [],
+			comments : []
+		};
+	};
+```
+然后你可以通过分开调用setState方法来分别更新它们，如：
+
+```jsx
+	componentDidMount(){
+		fetchPosts().then(response=>{
+			this.setState({
+				posts:response.posts
+			});
+		});
+
+		fetchComments().then(response=>{
+			this.setState({
+				comments:response.comments
+			});
+		});
+	};
+```
+
+这个合并是简单执行的，就是说当更新comments的时候，它不会动posts，但却完整地改变comments。
+
+## The Data Flows Down（数据是向下流的）
+
+在一个组合组件里，父组件和子组件都不知道这个组件的是富状态的还是少状态的，它们也不关心组件是用“函数式”还是“类式”构建的。
+
+这也是为什么说state是本地或密封的。组件是不能访问另外一个组件的state，更不要说去设置或更改它。
+
+一个父组件可以选择通过向下传递它的state作为子组件的props，如：
+
+```jsx
+	<h2>It is {this.state.date.toLocaleTimeString()}.</h2>
+```
+
+也可以在用户定义的组件用：
+
+```jsx
+	<FormattedDate date={this.state.date} />
+```
+
+这里，FormattedDate组件从它的props中接受date值，而不用管它是通过Clock的state或者Clock的props传递过来的，又或者是手写的：
+
+```jsx
+	function FormattedDate(props){
+		return <h2>It is {props.date.toLocaleTimeString()}.</h2>;
+	};
+```
+
+这通常称为“自上向下”或者“单向”的数据流。一个state只能被某个独立的组件所拥有，但这个state只能影响或者传递给组件树层中下一层的组件。
+
+如果你把一个组件树的props看作一个瀑布流的话。每个组件的comment的state就像传统的水源一样，不管来自什么地方。但总是向下流的。
+
+为了展示我们所说的所有的组件都是隔离的，我们可以创建一个App组件，它选了一个Clock三次：
+
+```jsx
+	function App(props){
+		return (
+			<div>
+				<Clock />
+				<Clock />
+				<Clock />
+			</div>
+		);
+	};
+
+	ReactDOM.render(
+		<App />,
+		document.getElementById('root')
+	);
+```
+
+每个Clock都用自己的定时器，并且独立的更新自己。
+
+在react程序里面，无论一个组件是富状态的还是少状态的，都被认为是一个合格的组件实现。你可以在一个富状态的组件里面引用一个少状态的组件，反之亦然。
