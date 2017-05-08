@@ -24,6 +24,8 @@
 
 * [6、Components and Props](https://github.com/woai30231/react-doc/tree/master/06-StateAndLifecycle)
 
+* [7、Handling Events](https://github.com/woai30231/react-doc/tree/master/07-HandlingEvents)
+
 
 
 ## License
