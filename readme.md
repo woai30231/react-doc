@@ -32,6 +32,8 @@
 
 * [7、Handling Events](https://github.com/woai30231/react-doc/tree/master/07-HandlingEvents)
 
+* [8、Handling Events](https://github.com/woai30231/react-doc/tree/master/08-ConditionalRendering)
+
 
 
 ## License
