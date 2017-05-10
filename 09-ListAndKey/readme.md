@@ -211,3 +211,49 @@ key属性值只会跟当前（同一个）数组数据之间是独一无二的�
 	  document.getElementById('root')
 	);
 ```
+key属性只是给react一个用于跟踪数据的线索而已，并不是传递给组件的，如果你需要个组件设置一样一个属性，那么可以用不同的属性名代替：
+
+```jsx
+	const content = posts.map((post) => (
+		<Post key={post.id} id={post.id} title={post.title} />
+	));
+```
+
+在这个例子中，Post组件可以读id属性，但是不能读key属性。
+
+## Embedding map() in JSX（）
+
+在上面的例子中，我们在JSX中声明了一个分离的listItems变量来存储数组，如：
+
+```jsx
+	function NumberList(props){
+		const numbers = props.numbers;
+		const listItems = numbers.map((number) => 
+			(
+				<ListItem key={number.toString()} value={number} />
+			)
+		);
+		return (
+			<ul>
+				{listItems}
+			</ul>
+		);
+	};
+```
+
+其实，JSX可以允许你[植入任何表达式](https://facebook.github.io/react/docs/introducing-jsx.html#embedding-expressions-in-jsx)到大括号里面，所以上面的代码我们可以这样简写：
+
+```jsx
+	function NumberList(props){
+		const numbers = props.numbers;
+		return (
+			<ul>
+				{numbers.map((number)=>(
+					<ListItem key={number.toString()} value={value} />
+				))}
+			</ul>
+		);
+	};
+```
+
+有时候，这种代码结构更利于清晰阅读，但是这种方式很容易被滥用。所以到底使用那种方式取决于你怎样方便提取变量以方便阅读，你只要记住一点，如果数组使用map方法的时候代码结构嵌套太深的话，那么是时候[提取、分离你的组件](https://facebook.github.io/react/docs/components-and-props.html#extracting-components)了！
