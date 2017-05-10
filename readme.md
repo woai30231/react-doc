@@ -35,6 +35,8 @@ __如果你觉得有必要的话，可以对项目进行star，或者watch，以
 
 * [8、Handling Events](https://github.com/woai30231/react-doc/tree/master/08-ConditionalRendering)
 
+* [9、Lists and Keys](https://github.com/woai30231/react-doc/tree/master/09-ListAndKey)
+
 
 
 ## License
