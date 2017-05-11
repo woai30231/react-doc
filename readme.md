@@ -42,7 +42,7 @@ __注：这个文档并不是简单地把react官网文档直接按字面意思�
 
 * [9、Lists and Keys(列表和列表键)](https://github.com/woai30231/react-doc/tree/master/09-ListAndKey)
 
-* [10、Lists and Keys(列表和列表键)](https://github.com/woai30231/react-doc/tree/master/10-Forms)
+* [10、Forms(用react控制表单数据)](https://github.com/woai30231/react-doc/tree/master/10-Forms)
 
 
 
