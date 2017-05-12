@@ -44,6 +44,8 @@ __注：这个文档并不是简单地把react官网文档直接按字面意思�
 
 * [10、Forms(用react控制表单数据)](https://github.com/woai30231/react-doc/tree/master/10-Forms)
 
+* [11、Lifting State Up(提升state)](https://github.com/woai30231/react-doc/tree/master/11-LiftingStateUp)
+
 
 
 ## License
