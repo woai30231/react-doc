@@ -86,8 +86,14 @@
     class Calculator extends React.Component{
         render(){
             return (
-                <Temper
+                <div>
+                    <TemperatureInput scale="c" />
+                    <TemperatureInput scale="f" />
+                </div>
             );
         };
     };
 ```
+我们现在有了两个表单，但是当你在其中一个input里面输入温度的时候，另外一个不会更新，这和我们的需求是矛盾的：我们需要它们彼此之间保持同步！
+
+我们也不能在Calculator里面显示BoilingVerdict，组件Calculator不知道当前的温度值，因为温度值在TemperatureInput里面被隐藏了！
