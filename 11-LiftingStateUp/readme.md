@@ -227,3 +227,49 @@ onTemperatureChange和temperature属性将在它们的祖先组件Calaulator那�
         scale:'f'
     }
 ```
+在这之前，我们需要同时保存两个表单的值，但现在不用如此了，只需要保存当前被改变的input值就好了，同时保存scale值。我们可以根据当前input的值，算出另外一个input的相关值！
+
+这些input的值之所以是同步更新的，是因为它们都是来自同一个state值。
+
+```jsx
+    class Calculator extends React.Component{
+        constructor(props){
+            super(props);
+            this.handleCelsiusChange = this.handleCelsiusChange.bind(this);
+            this.handleFahrenheitChange = this.handleFahrenheitChange.bind(this);
+            this.state = {temperature : '',scale:'c'};
+        };
+        handleCelsiusChange(temperature){
+            this.setState({scale:'c',temperature});
+        };
+        handleFahrenheitChange(temperature){
+            this.setState({
+                scale:'f',temperature
+            });
+        };
+        render(){
+            const scale = this.state.scale;
+            const temperature = this.state.temperature;
+            const celsius = scale === 'f'?tryConvert(temperature,toCelsius) : temperature;
+            const fahrenheit = scale === 'c'?tryConvert(temperature,toFahrenheit) : temperature;
+
+            return (
+                <div>
+                    <TemperatureInput scale="c" temperature={celsius} onTemperatureChange={this.handleCelsiusChange} />
+                    <TemperatureInput scale="f" temperature={fahrenheit} onTemperatureChange={this.handleFahrenheitChange} />
+                    <BoilingVerdict celsius={parseFloat(celsius)}/>
+                </div>
+            );
+        };
+    };
+```
+
+现在，无论你编辑了哪一个input值，组件Calculator的this.state.temperature和this.state.scale状态都会更新，两个input都会建立了依赖同步！
+
+让我们简要概述一下这其中放生了什么：
+
+* 1、React调用了input里面的onChange属性的监听函数，在我们的设计中，这是在组件TemperatureInput上注册的handleChange函数；
+
+* 2、handleChange函数通过根据需要调用了this.props.onTemperatureChange函数，该函数通过父组件Calculator提供；
+
+* 3、
