@@ -46,6 +46,8 @@ __注：这个文档并不是简单地把react官网文档直接按字面意思�
 
 * [11、Lifting State Up(提升state)](https://github.com/woai30231/react-doc/tree/master/11-LiftingStateUp)
 
+* [12、Composition vs Inheritance(合成和继承)](https://github.com/woai30231/react-doc/tree/master/12-CompositionVsInheritance)
+
 
 
 ## License
