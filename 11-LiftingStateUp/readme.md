@@ -292,5 +292,5 @@ onTemperatureChange和temperature属性将在它们的祖先组件Calaulator那�
 
 如果有一个数据我们可以从props或者state里面，那么这个数据很大可能不应该放在state里面。例如，为了存储celsiusValue和fahrenheitValue值，我们只需要保存最新的temperature和scale值就好了，其它的数据也可以通过这些值在render方法里面实时的算出来！
 
-有时候，当我们看到用户界面出现错误的时候，我们可以利用[React Developer Tools](https://github.com/facebook/react-devtools)来逐步检查问题所在，这会让你在源代码中去找bug，比较直观！
+有时候，当我们看到用户界面出现错误的时候，我们可以利用[React Developer Tools](https://github.com/facebook/react-devtools)来逐步检查props属性然后排除bug所在，这会让你在源代码中去找bug，比较直观！
 
