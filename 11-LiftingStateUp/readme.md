@@ -272,4 +272,25 @@ onTemperatureChange和temperature属性将在它们的祖先组件Calaulator那�
 
 * 2、handleChange函数通过根据需要调用了this.props.onTemperatureChange函数，该函数通过父组件Calculator提供；
 
-* 3、
+* 3、当用户界面更新之后，组件Calculator就会指定Celsius TemperatureInput的onTemperatureChange值为Calculator的handleCelsiusChange方法，同时，Fahrenheit TemperatureInput的onTemperatureChange值为Calculator的handleFahrenheitChange方法。所以不管调用其中的那个方法都只是依赖于对应的input表单被改过了；
+
+* 4、在这些方法里面，组件Calculator请求React通过调用this.setState()重新更新自己，就用当前的改变的input值和scale值；
+
+* 5、React调用组件Calculator的render方法来更新用户界面；
+
+* 6、其中TemperatureInput组件会根据Calculator的新props值，来根据自己用户界面；
+
+* 7、最后更新最终我们希望看到的用户界面。
+
+每次更新用户界面，都会重复上面的步骤！
+
+## Lessons Learned
+
+在react应用中，你应该保持单一的数据流。通常情况下，state值应该首先根据组件是否需要用它来更新用户界面来使用它！如果同时几个组件会用到相同的state值，那么这个时候你就应该想象一下，把这个state提升到它们的祖先组件中，而不是同步地分别更新多个相同的state值！你可以到[ top-down data flow](https://facebook.github.io/react/docs/state-and-lifecycle.html#the-data-flows-down)了解更多相关信息!
+
+提升state操作貌似增加了代码量，但是权衡一下，它减少了查找bug和隔离bug的工作量。因为state被保持在了一个可以独立修改的组件里面，这样我们就很好的控制可能存在的bug了。
+
+如果有一个数据我们可以从props或者state里面，那么这个数据很大可能不应该放在state里面。例如，为了存储celsiusValue和fahrenheitValue值，我们只需要保存最新的temperature和scale值就好了，其它的数据也可以通过这些值在render方法里面实时的算出来！
+
+有时候，当我们看到用户界面出现错误的时候，我们可以利用[React Developer Tools](https://github.com/facebook/react-devtools)来逐步检查问题所在，这会让你在源代码中去找bug，比较直观！
+
