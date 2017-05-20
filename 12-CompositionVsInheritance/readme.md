@@ -90,3 +90,56 @@ React拥有一个非常强大的合成模型，我们推荐在两个组件之间
         );
     };
 ```
+在用“类式”方式写组件的时候，合成也用的和“函数式”一样好。如：
+
+```jsx
+    function Dialog(props){
+        return (
+            <FancyBorder color="blue">
+                <h1 className="Dialog-title">
+                    {
+                        props.title
+                    }
+                </h1>
+                <p className="Dialog-message">
+                    {props.message}
+                </p>
+                {props.children}
+            </FancyBorder>
+        );
+    };
+
+    class SignUpDialog extends React.Component{
+        constructor(props){
+            super(props);
+            this.handleChange = this.handleChange.bind(this);
+            this.handleSignUp = this.handleSignUp.bind(this);
+            this.state = {login:''};
+        };
+        render(){
+            return (
+                <Dialog title="Mars Exploration Program" message="How should we refer to you?">
+                    <input value={this.state.login} onChange={this.handleChange} />
+                    <button onClick={this.handleSignUp} >
+                        Sign Me Up!
+                    </button>
+                </Dialog>
+            );
+        };
+
+        handleChange(e){
+            this.setState({login:e.target.value});
+        };
+        handleSignUp(){
+            alert(`Welcome aboard,${this.state.login}!`);
+        };
+    };
+```
+
+### So What About Inheritance? 
+
+在Facebook项目上，我们用react构建了成千上万个components，但是我们却很少找到需要使用继承的案例！
+
+Props属性和合成技术将更灵活让你一种明确和安全的方式来定义你的组件的用户界面。记住components可以接受任意数据的props，如原始值、React elements、或者函数等！
+
+如果你想在组件之间复用non-UI功能，我们建议你把它提炼成一个单独的javaScript模块，那么其它组件就能引用他，使用函数、对象或class方式，而不是通过扩展它！
