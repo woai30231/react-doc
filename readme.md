@@ -50,6 +50,8 @@ __注：这个文档并不是简单地把react官网文档直接按字面意思�
 
 * [13、Thinking in React(写react的思路)](https://github.com/woai30231/react-doc/tree/master/13-ThinkingInReact)
 
+* [React.Component(介绍React.component构造函数)](https://github.com/woai30231/react-doc/tree/master/ReactComponent)
+
 
 
 ## License
