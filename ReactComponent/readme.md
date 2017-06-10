@@ -98,3 +98,69 @@ render方法应该是一个单纯的js函数，也就是说，多次调用它返
 ```jsx
     constructor(props)
 ```
+
+constructor方法将在组件未挂载到页面中的时候执行。我们在React.Component的子类中实现constructor方法的时候，我们需要在其内部所有声明之前使用super(props)语句，否则，我们我们引用this.props的时候，其值将为undefined，从而导致bug。
+
+constructor方法内部是初始化state的是绝佳位置，但是如果你不需要初始化state，或者为你的方法绑定上下文的话，那么你可以不书写constructor方法。
+ 
+我们可以在初始化state的时候用到props，这是有效的！这里有一个有效的React.Component子类constructor方法实现：
+
+```jsx
+    constructor(props){
+        super(props);
+        this.state = {
+            color : props.initialColor
+        };
+    };
+```
+
+当心这种模式，因为当我们的props更新的时候，我们的state并不会和props保持同步，为了达到同步，那么通常情况下，我们需要[lift the state up](https://facebook.github.io/react/docs/lifting-state-up.html)。
+
+你也可以通过调用[componentWillReceiveProps(nextProps)](https://facebook.github.io/react/docs/react-component.html#componentwillreceiveprops)来保持state和props的同步更新，但是最好使用lift the state up，因为这样实现更容易，而且少bug。
+
+##### componentWillMount()
+
+```jsx
+    componentWillMount()
+```
+
+componentWillMount()方法将会在组件被挂载值钱立即调用，同时他会在render()方法值钱调用，所以在这个方法里面同步地设置state，并不会导致重渲染。避免在这个方法里面使用任何有副作用或者服务。
+
+这是唯一一个为渲染服务的方法，通常地，我们推荐用到的它的地方用constructor方法实现。
+
+##### componentDidMount()
+
+```jsx
+    componentDidMount()
+```
+
+这个方法将会在组件被挂载的时候立即调用。这个方法将会是我们处理逻辑很好的地方，处理过后将会产生重渲染。
+
+##### componentWillReceiveProps()
+
+```jsx
+    componentWillReceiveProps(nextProps)
+```
+
+这个方法将会在组件挂载之后并且即将接收到新的props之前调用。如果你需要用改变的props值来更新你的state值，那么你就需要在其内部执行this.setState()方法。
+
+记住，这个方法将会在props值没有改变的情况下也会调用，所以请确定比较一下当前props和nextProps值，以确保只在值改变的情况这行相关操作，这种情况通常出现在一个父组件导致子组件的重渲染。
+
+这个方法不会在[挂载周期时间内](https://facebook.github.io/react/docs/react-component.html#mounting)用初始props调用。只会在组件渲染之后，并且相关组件更新了props的时候调用！通常调用this.setState()方法不会触发这个方法的调用。
+
+##### shouldComponentUpdate()
+
+```jsx
+    shouldComponentUpdate(nextProps,nextState)
+```
+
+调用这个方法主要是因为组件的输出跟不受当前props或state的改变的影响。通常情况下，我们只会在state改变你的情况下，才会重渲染组件，大多数情况都是如此。
+
+该方法在组件接收到新的state或者props的时候调用，默认返回true。不会在初次初始state或props的时候调用，或者当forceUpdate()调用的时候。
+
+返回false不能阻止子组件的重渲染。
+
+正确地，如果该方法返回false，那么componentWillUpdate(),render(),和ComponentDidUpdate()都不会调用。注意，在未来，React可能把这个方法当成一个暗示而非一个严格的指令。返回false依然能够导致重渲染。
+
+如果你想分析一下你的组件的性能，你可以通过实践React.PureComponent来实现组件，并且通过对比相关state或者props前后值，最后返回false来告诉React，更新可以跳过。
+
