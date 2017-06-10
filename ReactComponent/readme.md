@@ -1,3 +1,7 @@
+# 推荐阅读
+
+[关于react生命周期相关的介绍](https://developmentarc.gitbooks.io/react-indepth/content/react_basics/introduction.html)
+
 ## React.Component
 
 components组件思想使得你在开发用户页面的时候，把界面看成是一个个独立、可重用的子块，并且每个块都是隔离于其它板块的。React.Component是React上提供的一个方法！
