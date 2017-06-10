@@ -91,7 +91,7 @@ React.Component是一个抽象基础类，我们很少直接提伦它，相反�
 
 render方法应该是一个单纯的js函数，也就是说，多次调用它返回的内容都应该是一样的，或者说，你不能在render方法里面执行修改state或props的操作。同时你也不应该把用户交互需要执行的操作写在这个方法里面，而应该把用户交互相关的操作放在componentDidMount()或者其它生命周期函数里面。总的一句话，尽量保持render方法里面内容逻辑简单。
 
-**注意：如果(shouldComponentUpdate()](https://facebook.github.io/react/docs/react-component.html#shouldcomponentupdate)返回false的时候，render()将不会执行**
+**注意：如果[shouldComponentUpdate()](https://facebook.github.io/react/docs/react-component.html#shouldcomponentupdate)返回false的时候，render()将不会执行**
 
 ##### constructor()
 
