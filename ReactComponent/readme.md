@@ -168,3 +168,16 @@ componentWillMount()方法将会在组件被挂载值钱立即调用，同时他
 
 如果你想分析一下你的组件的性能，你可以通过实践React.PureComponent来实现组件，并且通过对比相关state或者props前后值，最后返回false来告诉React，更新可以跳过。
 
+##### componentWillUpdate()
+
+```jsx
+    componentWillUpdate(nextProps,nextState)
+```
+该方法将会在接收到新state或者新props值之后在render方法之前调用。这里可以很好的处理一些渲染之前的逻辑，但是初次render的时候不会被调用。
+
+注意，在该方法里面不能使用this.setState()，如果你要实现相关操作，可以用componentWillReceiveProps()代替。
+
+**注意：如果shouldComponentUpdate()返回false，那么该方法就不会被调用。**
+
+
+
